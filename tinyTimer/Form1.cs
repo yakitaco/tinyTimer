@@ -9,6 +9,7 @@ namespace tinyTimer {
         private static System.Threading.Timer tm;
         static Form1 Instance;
         DateTime beforeTime;
+        TimeSpan span = new TimeSpan();
 
         public Form1() {
             InitializeComponent();
@@ -26,6 +27,9 @@ namespace tinyTimer {
         public void FormAddMsg(string msg) {
             label1.Text = msg;
             textBox1.AppendText(msg + "\r\n");
+            var hhmmss = span.ToString(@"hh\:mm\:ss");
+            label2.Text = hhmmss + " sec";
+            span = span.Add(new TimeSpan(0, 0, (int)numericUpDown1.Value));
         }
 
         // 指定秒数間隔で呼び出される処理
@@ -63,6 +67,8 @@ namespace tinyTimer {
         private void button3_Click(object sender, EventArgs e) {
             cnt = 0;
             textBox1.Text = "";
+            TimeSpan span = new TimeSpan();
+
         }
     }
 }
